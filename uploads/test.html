@@ -1,0 +1,124 @@
+
+
+<html>
+
+<head>
+    <style>
+        *{
+            margin: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    
+
+
+<div class="box">
+    <div class="form-container">
+        <form  id="AGV-form">
+            <div class="from-grid">
+                <div id="res" style="color: green;font-size: 14px;"></div>
+                <div>
+                    <label for="fname">Name:</label>
+                    <input class="text" type="text" id="fname" name="fname" placeholder="Full name">
+                </div>
+
+                <div>
+                    <label for="pnumber">Phone Number:</label>
+                    <input class="text" type="text" id="pnumber" name="pnumber" value="">
+                </div>
+
+                <div>
+                    <label for="email">Email:</label>
+                    <input class="text" type="text" id="email" name="email" value="">
+                </div>
+                    
+                <div>
+                    <label for="lamount">Loan Amount:</label>
+                    <input class="text" type="text" id="lamount" name="lamount" placeholder="500,000">
+                </div>
+
+                <div>
+                    <label for="ltype">Loan Type:</label>
+                    <select name="loan-type" id="loan-type-id">
+                        <option value="" disabled selected>---Select Loan type---</option>
+                        <option value="Plot Loan">Plot Loan</option>
+                        <option value="Mortgage Loan">Mortgage Loan</option>
+                        <option value="NRI Mortgage Loan">NRI Mortgage Loan</option>
+                        <option value="Personal Loan">Personal Loan</option>
+                        <option value="Construction Loan">Construction Loan</option>
+                        <option value="Business Loan">Business Loan</option>
+                        <option value="Commercial Loan">Commercial Loan</option>
+                        <option value="Professional Loan">Professional Loan</option>
+                        <option value="Working Capital ">Working Capital </option>
+                        <option value="OD & CC Loan ">OD & CC Loan </option>
+                        <option value="Car Loan">Car Loan</option>
+                        <option value="Educational Loan">Educational Loan</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="tunure">Tenure:</label>
+                    <!--<input class="text" type="text" id="tunure" name="tenure" value="">-->
+                    <select name="tunure" id="tunure-id">
+                        <option value="" disabled selected>---Select Loan type---</option>
+                        <option value="6 months">6 months</option>
+                        <option value="12 months">12 months</option>
+                        <option value="24 months">24 months</option>
+                        <option value="36 months">36 months</option>
+                        <option value="3-5 years">3-5 years</option>
+                        <option value="5-10 years">5-10 years</option>
+                        <option value=">10 years">>10 years</option>
+
+                    </select>
+                </div>
+                <!-- <div class="form-btn">
+                    <button name="btn">Apply Now</button>
+                </div> -->
+            </div>
+            <input class="btn" id="submitbtn" type="submit" value="Apply Now">
+        </form>
+        <div id="message"><p id="res-message"></p></div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+
+
+$(document).ready(function(){
+    $('#AGV-form').submit(function(event){
+        event.preventDefault();
+        var formData = new FormData(this);
+        console.log(formData);
+
+        $.ajax({
+            url:'https://script.google.com/macros/s/AKfycby06ZsVrIStmpaiTOQCVEuXXd_sIfVOAhVrC5GOw7HeCJcjBTBo67-T1dzQDBS_Vzgn/exec',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            crossDomain: true,
+            headers:{
+                'Access-Control-Allow-Origin': '*',
+            },
+            success: function(response){
+                console.log('Data Saved successfully!');
+            },
+            error: function(xhr, status, error){
+                console.error(xhr);
+                console.error(status);
+                console.error(error);
+            }
+
+        });
+    });
+});
+
+</script>
+
+
+</body>
+</html>
